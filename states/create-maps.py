@@ -96,5 +96,5 @@ for colorType in colorTypes:
             path["style"] = "fill:{};fill-rule:evenodd".format(hexStr)
 
     #saving the svg file
-    with open("countries-{}.svg".format(colorType),"w") as f:
+    with open("states-{}.svg".format(colorType),"w") as f:
         f.write(str(worldMap))
