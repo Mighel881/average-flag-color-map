@@ -27,16 +27,19 @@ for tr in soup.find_all("table")[2].find_all("tr")[1:]:
     wikiUrl = "https://wikipedia.org" + tr.a.get("href")
     wikiPage = requests.get(wikiUrl)
     wikiSoup = BeautifulSoup(wikiPage.text,"html.parser")
-
+    
     #iterating through all images on the page
     for img in wikiSoup.find_all("img"):
+        try:
 
-        #the image alt text or the title contains "flag"
-        if "flag" in img.get("alt","").lower() or "flag" in img.get("title","").lower():    
+            if "flag" in img.parent.get("title").lower():
+            #the image alt text or the title contains "flag"
+            #if "flag" in img.get("alt","").lower() or "flag" in img.get("title","").lower():    
 
-            #Adjust url and download image. once downloaded no need to scan for more images
-            imgSrc = "https:"+img.get("src")
-            urllib.urlretrieve(imgSrc,"flags/{}.png".format(code))
-            break
-    
+                #Adjust url and download image. once downloaded no need to scan for more images
+                imgSrc = "https:"+img.get("src")
+                urllib.urlretrieve(imgSrc,"flags/{}.png".format(code))
+                break
+        except Exception as exc:
+            print exc
     

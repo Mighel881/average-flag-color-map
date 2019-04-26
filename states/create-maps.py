@@ -59,6 +59,7 @@ for flagPath in images:
     flagAvgs[flagName]["rgb"] = tuple(avgrgb)
     flagAvgs[flagName]["hsv"] = avghsv
     flagAvgs[flagName]["hue"] = avghue
+    flagAvgs[flagName]["common"] = tuple(sorted(colors)[0][1])
 
 #two separate scripts were combined, this makes it so I don't have to change the variable names
 colors = flagAvgs
