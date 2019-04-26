@@ -59,7 +59,7 @@ for flagPath in images:
     flagAvgs[flagName]["rgb"] = tuple(avgrgb)
     flagAvgs[flagName]["hsv"] = avghsv
     flagAvgs[flagName]["hue"] = avghue
-    flagAvgs[flagName]["common"] = tuple(sorted(colors)[0][1])
+    flagAvgs[flagName]["common"] = sorted(colors,reverse=True)[0][1]
 
 #two separate scripts were combined, this makes it so I don't have to change the variable names
 colors = flagAvgs
@@ -67,6 +67,9 @@ colors = flagAvgs
 #loading world svg
 with open("svgs/usa-states.svg","r") as f:
     worldMap = BeautifulSoup(f.read(),"html.parser")
+
+worldMap.svg["style"] = "background-color: #ececec;"
+worldMap.find("g",id="DC").decompose()
 
 #creating a list of the colortypes, rgb, hsv, hue, etc.
 colorTypes = list(colors["Alaska"])
